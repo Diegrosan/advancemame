@@ -1,6 +1,7 @@
 #include "driver.h"
 #include "deco16ic.h"
 #include "deco32.h"
+#include "neon_helper.h" 
 
 UINT32 *deco32_pf1_data,*deco32_pf2_data,*deco32_pf3_data,*deco32_pf4_data;
 UINT32 *deco32_pf12_control,*deco32_pf34_control;
@@ -24,6 +25,10 @@ int deco32_raster_display_position;
 UINT16 *deco32_raster_display_list;
 
 /******************************************************************************/
+
+#ifdef __ARM_NEON__
+#include <arm_neon.h>
+#endif
 
 WRITE32_HANDLER( deco32_pf1_data_w )
 {
